@@ -4,7 +4,7 @@ Admin dashboard for leads, companies, tasks, and users. The interface is a React
 
 This repository has not been published or deployed. Replace the placeholders below after you create the GitHub repository and hosting apps.
 
-- GitHub: `[https://github.com/<owner>/mini-crm](https://github.com/stephenrajss/Mini_CRM_Admin_Dashboard`
+- GitHub: `https://github.com/stephenrajss/Mini_CRM_Admin_Dashboard`
 - Frontend: `https://<your-site>.netlify.app`
 - API: `https://<your-api>.onrender.com`
 
