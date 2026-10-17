@@ -58,8 +58,8 @@ export function UsersPage() {
   }
 
   const columns = [
-    { key: 'name', header: 'Name', render: (row) => <span className="font-medium text-slate-900">{row.name}</span> },
-    { key: 'email', header: 'Email', render: (row) => row.email },
+    { key: 'name', header: 'Name', wrap: true, width: '22%', render: (row) => <span className="font-medium text-slate-900">{row.name}</span> },
+    { key: 'email', header: 'Email', wrap: true, width: '28%', render: (row) => row.email },
     { key: 'role', header: 'Role', render: (row) => <StatusBadge value={row.role} /> },
     {
       key: 'isActive',
@@ -69,6 +69,9 @@ export function UsersPage() {
     {
       key: 'actions',
       header: 'Actions',
+      width: '22%',
+      headerClassName: 'text-right',
+      className: 'text-right',
       render: (row) => (
         <div className="flex justify-end gap-2">
           <Link to={`/users/${row.id}/edit`} className="btn-ghost px-2" aria-label={`Edit ${row.name}`}><Pencil className="h-4 w-4" /></Link>
@@ -93,7 +96,7 @@ export function UsersPage() {
         actions={<Link to="/users/new" className="btn-primary"><Plus className="h-4 w-4" />New user</Link>}
       />
       <div className="card">
-        <div className="flex flex-col gap-3 border-b border-slate-200 p-4 lg:flex-row lg:items-end">
+        <div className="grid grid-cols-1 gap-4 border-b border-slate-200 p-4 md:grid-cols-[minmax(16rem,1fr)_14rem] md:items-end">
           <SearchInput value={search} onChange={setSearch} placeholder="Search name or email" />
           <FilterSelect id="user-role" label="Role" value={role} onChange={setRole} options={USER_ROLES} />
         </div>

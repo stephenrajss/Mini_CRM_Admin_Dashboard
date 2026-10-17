@@ -4,12 +4,17 @@ export function DataTable(props) {
   return (
     <>
       <div className="hidden overflow-x-auto md:block">
-        <table className="min-w-full text-left text-sm">
+        <table className="w-full min-w-[920px] border-collapse text-left text-sm">
           <caption className="sr-only">Data table</caption>
           <thead className="border-b border-slate-200 text-xs uppercase tracking-wide text-slate-500">
             <tr>
               {columns.map((column) => (
-                <th key={column.key} scope="col" className="whitespace-nowrap px-4 py-3 font-medium">
+                <th
+                  key={column.key}
+                  scope="col"
+                  className={`whitespace-nowrap px-4 py-3 font-medium ${column.headerClassName || ''}`}
+                  style={column.width ? { width: column.width } : undefined}
+                >
                   {column.header}
                 </th>
               ))}
@@ -19,8 +24,10 @@ export function DataTable(props) {
             {rows.map((row) => (
               <tr key={rowKey(row)} className="border-b border-slate-100 last:border-0 hover:bg-slate-50/70">
                 {columns.map((column) => (
-                  <td key={column.key} className="px-4 py-3 align-middle text-slate-700">
-                    {column.render ? column.render(row) : row[column.key]}
+                  <td key={column.key} className={`px-4 py-3 align-middle text-slate-700 ${column.className || ''}`}>
+                    <div className={column.wrap ? 'min-w-[8rem] break-words' : 'whitespace-nowrap'}>
+                      {column.render ? column.render(row) : row[column.key]}
+                    </div>
                   </td>
                 ))}
               </tr>

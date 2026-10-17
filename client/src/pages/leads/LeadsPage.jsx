@@ -100,11 +100,13 @@ export function LeadsPage() {
     {
       key: 'name',
       label: 'Name',
+      wrap: true,
+      width: '14%',
       header: <SortButton label="Name" field="name" sortBy={sortBy} sortOrder={sortOrder} onSort={toggleSort} />,
       render: (row) => <Link to={`/leads/${row.id}`} className="font-medium text-slate-900 hover:text-indigo-700">{row.name}</Link>,
     },
-    { key: 'email', header: 'Email', render: (row) => row.email },
-    { key: 'phone', header: 'Phone', render: (row) => row.phone },
+    { key: 'email', header: 'Email', wrap: true, width: '20%', render: (row) => row.email },
+    { key: 'phone', header: 'Phone', width: '12%', render: (row) => row.phone },
     { key: 'status', header: 'Status', render: (row) => <StatusBadge value={row.status} /> },
     { key: 'assignedTo', header: 'Assigned', render: (row) => row.assignedTo?.name || '—' },
     { key: 'company', header: 'Company', render: (row) => row.company?.name || '—' },
@@ -112,6 +114,9 @@ export function LeadsPage() {
     {
       key: 'actions',
       header: 'Actions',
+      width: '12%',
+      headerClassName: 'text-right',
+      className: 'text-right',
       render: (row) => (
         <div className="flex justify-end gap-1">
           <Link to={`/leads/${row.id}`} className="btn-ghost px-2" aria-label={`View ${row.name}`}><Eye className="h-4 w-4" /></Link>
@@ -134,7 +139,7 @@ export function LeadsPage() {
         actions={isAdmin ? <Link to="/leads/new" className="btn-primary"><Plus className="h-4 w-4" />New lead</Link> : null}
       />
       <div className="card">
-        <div className="flex flex-col gap-3 border-b border-slate-200 p-4 lg:flex-row lg:items-end">
+        <div className="grid grid-cols-1 items-end gap-4 border-b border-slate-200 p-4 sm:grid-cols-2 xl:grid-cols-4">
           <SearchInput value={search} onChange={setSearch} placeholder="Search name, email, or phone" />
           <FilterSelect id="lead-status" label="Status" value={status} onChange={setStatus} options={LEAD_STATUSES} />
           {isAdmin ? <FilterSelect id="lead-assignee" label="Assigned user" value={assignedTo} onChange={setAssignedTo} options={users} /> : null}

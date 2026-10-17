@@ -20,7 +20,6 @@ companySchema.pre('validate', function setNormalizedName() {
     this.nameNormalized = normalizeName(this.name);
   }
 });
-
 companySchema.index({ name: 1 });
 
 export const Company = mongoose.model('Company', companySchema);

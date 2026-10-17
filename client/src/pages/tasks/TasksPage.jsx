@@ -77,6 +77,8 @@ export function TasksPage() {
     {
       key: 'title',
       header: 'Task',
+      wrap: true,
+      width: '22%',
       render: (row) => <Link to={`/tasks/${row.id}`} className="font-medium text-slate-900 hover:text-indigo-700">{row.title}</Link>,
     },
     {
@@ -99,7 +101,7 @@ export function TasksPage() {
       header: 'Status',
       render: (row) => (
         <select
-          className="input w-auto"
+          className="input w-36"
           aria-label={`Status for ${row.title}`}
           value={row.status}
           disabled={savingId === row.id}
@@ -113,6 +115,9 @@ export function TasksPage() {
     {
       key: 'actions',
       header: 'Actions',
+      width: '8%',
+      headerClassName: 'text-right',
+      className: 'text-right',
       render: (row) => (
         <div className="flex justify-end gap-1">
           <Link to={`/tasks/${row.id}`} className="btn-ghost px-2" aria-label={`View ${row.title}`}><Eye className="h-4 w-4" /></Link>
@@ -130,7 +135,7 @@ export function TasksPage() {
         actions={isAdmin ? <Link to="/tasks/new" className="btn-primary"><Plus className="h-4 w-4" />New task</Link> : null}
       />
       <div className="card">
-        <div className="flex flex-col gap-3 border-b border-slate-200 p-4 lg:flex-row lg:items-end">
+        <div className="grid grid-cols-1 items-end gap-4 border-b border-slate-200 p-4 sm:grid-cols-2 xl:grid-cols-4">
           <SearchInput value={search} onChange={setSearch} placeholder="Search title or lead name" />
           <FilterSelect id="task-status" label="Status" value={status} onChange={setStatus} options={TASK_STATUSES} />
           <FilterSelect id="task-due" label="Due" value={due} onChange={setDue} options={DUE_FILTERS} allLabel="Any date" />
